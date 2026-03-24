@@ -11,14 +11,14 @@ function M.highlight(highlights, termcolors)
     end
 end
 
----@param colors KanagawaColors
----@param config? KanagawaConfig
+---@param colors JetbrainsClassicColors
+---@param config? JetbrainsClassicConfig
 function M.setup(colors, config)
-    config = config or require("kanagawa").config
+    config = config or require("jetbrains_classic").config
 
     local highlights = {}
     for _, highlight in ipairs({ "editor", "syntax", "treesitter", "lsp", "plugins" }) do
-        local mod = require("kanagawa.highlights." .. highlight)
+        local mod = require("jetbrains_classic.highlights." .. highlight)
         for hl, spec in pairs(mod.setup(colors, config)) do
             highlights[hl] = spec
         end

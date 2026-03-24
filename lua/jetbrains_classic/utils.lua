@@ -2,30 +2,24 @@ local M = {}
 local PATH_SEP = vim.loop.os_uname().version:match("Windows") and "\\" or "/"
 
 local get_compiled_path = function(theme)
-    return table.concat({vim.fn.stdpath("state"), "kanagawa", theme .. "_compiled.lua"}, PATH_SEP)
-end
-
----@return string theme
-function M.get_theme_from_bg_opt()
-    local config = require("kanagawa").config
-    return config.theme[vim.o.background] or config.theme.default
+    return table.concat({vim.fn.stdpath("state"), "jetbrains_classic", theme .. "_compiled.lua"}, PATH_SEP)
 end
 
 ---@param theme string
 ---@param highlights table
 ---@param termcolors table
 function M.compile(theme, highlights, termcolors)
-    vim.loop.fs_mkdir(vim.fn.stdpath("state") .. PATH_SEP .. "kanagawa", 448)
+    vim.loop.fs_mkdir(vim.fn.stdpath("state") .. PATH_SEP .. "jetbrains_classic", 448)
 
     local fname = get_compiled_path(theme)
     local file, err = io.open(fname, "wb")
     if not file or err then
-        vim.notify("Kanagawa: Error writing " .. fname .. ":\n" .. err, vim.log.levels.ERROR)
+        vim.notify("JetbrainsClassic: Error writing " .. fname .. ":\n" .. err, vim.log.levels.ERROR)
         return
     end
 
     local lines = {
-        "require'kanagawa'.compiled = string.dump(function()",
+        "require'jetbrains_classic'.compiled = string.dump(function()",
         "local g = vim.g",
         "local nvim_set_hl = vim.api.nvim_set_hl",
     }
@@ -42,7 +36,7 @@ function M.compile(theme, highlights, termcolors)
 
     local blob = table.concat(lines, "\n")
     assert(loadstring(blob, "=(compile)"))()
-    file:write(require("kanagawa").compiled)
+    file:write(require("jetbrains_classic").compiled)
     file:close()
 end
 

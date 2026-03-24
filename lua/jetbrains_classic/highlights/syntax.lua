@@ -1,11 +1,10 @@
--- local c = require("kanagawa.color")
 local M = {}
 
----@param colors KanagawaColors
----@param config? KanagawaConfig
+---@param colors JetbrainsClassicColors
+---@param config? JetbrainsClassicConfig
 function M.setup(colors, config)
     local theme = colors.theme
-    config = config or require("kanagawa").config
+    config = config or require("jetbrains_classic").config
 
     return {
         -- *Comment	any comment

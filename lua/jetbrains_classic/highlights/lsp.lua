@@ -1,8 +1,8 @@
 local M = {}
----@param colors KanagawaColors
----@param config? KanagawaConfig
+---@param colors JetbrainsClassicColors
+---@param config? JetbrainsClassicConfig
 function M.setup(colors, config)
-    config = config or require("kanagawa").config
+    config = config or require("jetbrains_classic").config
     local theme = colors.theme
     return {
         -- ["@lsp.type.class"] = { link = "Structure" },
@@ -15,7 +15,7 @@ function M.setup(colors, config)
         ["@lsp.type.method"] = { link = "@function.method" },       -- Function
         ["@lsp.type.namespace"] = { link = "@module" },             -- Structure
         ["@lsp.type.parameter"] = { link = "@variable.parameter" }, -- Identifier
-        -- ["@lsp.type.property"] = { link = "Identifier" },
+        ["@lsp.type.property"] = { link = "Constant" },
         -- ["@lsp.type.struct"] = { link = "Structure" },
         -- ["@lsp.type.type"] = { link = "Type" },
         -- ["@lsp.type.typeParameter"] = { link = "TypeDef" },

@@ -1,9 +1,9 @@
 local M = {}
 
----@param colors KanagawaColors
----@param config? KanagawaConfig
+---@param colors JetbrainsClassicColors
+---@param config? JetbrainsClassicConfig
 function M.setup(colors, config)
-    config = config or require("kanagawa").config
+    config = config or require("jetbrains_classic").config
     local theme = colors.theme
     return {
         -- @variable                       various variable names
@@ -14,7 +14,7 @@ function M.setup(colors, config)
         ["@variable.parameter"] = { fg = theme.syn.parameter },
         -- @variable.parameter.builtin     special parameters (e.g. `_`, `it`)
         -- @variable.member                object and struct fields
-        ["@variable.member"] = { fg = theme.syn.identifier },
+        ["@variable.member"] = { fg = theme.syn.constant },
         --
         -- @constant (Constant)              constant identifiers
         -- @constant.builtin       built-in constant values
@@ -51,6 +51,7 @@ function M.setup(colors, config)
         ["@attribute"] = { link = "Constant" },
         -- @attribute.builtin      builtin annotations (e.g. `@property` in Python)
         -- @property               the key in key/value pairs
+        ["@property"] = { fg = theme.syn.constant },
         --
         -- @function               function definitions
         -- @function.builtin       built-in functions

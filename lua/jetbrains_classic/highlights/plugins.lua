@@ -1,9 +1,9 @@
 local M = {}
 
----@param colors KanagawaColors
----@param config? KanagawaConfig
+---@param colors JetbrainsClassicColors
+---@param config? JetbrainsClassicConfig
 function M.setup(colors, config)
-    config = config or require("kanagawa").config
+    config = config or require("jetbrains_classic").config
     local theme = colors.theme
     return {
         -- Neovcs
@@ -185,51 +185,52 @@ function M.setup(colors, config)
         CmpItemKindTypeParameter = { link = "Type" },
         CmpItemKindCopilot = { link = "String" },
 
-        -- blink.cmp
-        BlinkCmpMenu = { link = "Pmenu" },
-        BlinkCmpMenuSelection = { link = "PmenuSel" },
-        BlinkCmpMenuBorder = { fg = theme.ui.bg_search, bg = theme.ui.pmenu.bg },
-        BlinkCmpScrollBarThumb = { link = "PmenuThumb" },
-        BlinkCmpScrollBarGutter = { link = "PmenuSbar" },
-        BlinkCmpLabel = { fg = theme.ui.pmenu.fg },
-        BlinkCmpLabelMatch = { fg = theme.syn.fun },
-        BlinkCmpLabelDetails = { fg = theme.syn.comment },
-        BlinkCmpLabelDeprecated = { fg = theme.syn.comment, strikethrough = true },
-        BlinkCmpGhostText = { fg = theme.syn.comment },
-        BlinkCmpDoc = { link = "NormalFloat" },
-        BlinkCmpDocBorder = { link = "FloatBorder" },
-        BlinkCmpDocCursorLine = { link = "Visual"},
-        BlinkCmpSignatureHelp = { link = "NormalFloat" },
-        BlinkCmpSignatureHelpBorder = { link = "FloatBorder" },
-        BlinkCmpSignatureHelpActiveParameter = { link = "LspSignatureActiveParameter"},
+        -- blink.cmp (IntelliJ-style popup)
+        BlinkCmpMenu = { fg = theme.ui.fg, bg = theme.ui.bg_p1 },
+        BlinkCmpMenuSelection = { fg = "none", bg = theme.ui.bg_p2 },
+        BlinkCmpMenuBorder = { fg = theme.ui.bg_p2, bg = theme.ui.bg_p1 },
+        BlinkCmpScrollBarThumb = { bg = theme.ui.bg_p2 },
+        BlinkCmpScrollBarGutter = { bg = theme.ui.bg_p1 },
+        BlinkCmpLabel = { fg = theme.ui.fg },
+        BlinkCmpLabelMatch = { fg = theme.ui.fg, bold = true },
+        BlinkCmpLabelDetails = { fg = theme.ui.fg_dim },
+        BlinkCmpLabelDeprecated = { fg = theme.ui.fg_dim, strikethrough = true },
+        BlinkCmpGhostText = { fg = theme.ui.fg_dim },
+        BlinkCmpDoc = { fg = theme.ui.fg, bg = theme.ui.bg_p1 },
+        BlinkCmpDocBorder = { fg = theme.ui.bg_p2, bg = theme.ui.bg_p1 },
+        BlinkCmpDocCursorLine = { bg = theme.ui.bg_p2 },
+        BlinkCmpSignatureHelp = { fg = theme.ui.fg, bg = theme.ui.bg_p1 },
+        BlinkCmpSignatureHelpBorder = { fg = theme.ui.bg_p2, bg = theme.ui.bg_p1 },
+        BlinkCmpSignatureHelpActiveParameter = { fg = theme.syn.fun, bold = true },
 
+        -- IntelliJ-style completion kind colors
         BlinkCmpKind = { fg = theme.ui.fg_dim },
         BlinkCmpKindText = { fg = theme.ui.fg },
-        BlinkCmpKindMethod = { link = "@function.method" },
-        BlinkCmpKindFunction = { link = "Function" },
-        BlinkCmpKindConstructor = { link = "@constructor" },
-        BlinkCmpKindField = { link = "@variable.member" },
-        BlinkCmpKindVariable = { fg = theme.ui.fg_dim },
-        BlinkCmpKindClass = { link = "Type" },
-        BlinkCmpKindInterface = { link = "Type" },
-        BlinkCmpKindModule = { link = "@module" },
-        BlinkCmpKindProperty = { link = "@property" },
-        BlinkCmpKindUnit = { link = "Number" },
-        BlinkCmpKindValue = { link = "String" },
-        BlinkCmpKindEnum = { link = "Type" },
-        BlinkCmpKindKeyword = { link = "Keyword" },
-        BlinkCmpKindSnippet = { link = "Special" },
-        BlinkCmpKindColor = { link = "Special" },
-        BlinkCmpKindFile = { link = "Directory" },
-        BlinkCmpKindReference = { link = "Special" },
-        BlinkCmpKindFolder = { link = "Directory" },
-        BlinkCmpKindEnumMember = { link = "Constant" },
-        BlinkCmpKindConstant = { link = "Constant" },
-        BlinkCmpKindStruct = { link = "Type" },
-        BlinkCmpKindEvent = { link = "Type" },
-        BlinkCmpKindOperator = { link = "Operator" },
-        BlinkCmpKindTypeParameter = { link = "Type" },
-        BlinkCmpKindCopilot = { link = "String" },
+        BlinkCmpKindMethod = { fg = theme.syn.fun },          -- #FFC66D gold
+        BlinkCmpKindFunction = { fg = theme.syn.fun },        -- #FFC66D gold
+        BlinkCmpKindConstructor = { fg = theme.syn.fun },     -- #FFC66D gold
+        BlinkCmpKindField = { fg = theme.syn.constant },      -- #9876AA purple
+        BlinkCmpKindVariable = { fg = theme.ui.fg },           -- #A9B7C6
+        BlinkCmpKindClass = { fg = theme.syn.keyword },       -- #CC7832 orange
+        BlinkCmpKindInterface = { fg = theme.syn.string },    -- #6A8759 green
+        BlinkCmpKindModule = { fg = theme.syn.constant },     -- #9876AA purple
+        BlinkCmpKindProperty = { fg = theme.syn.constant },   -- #9876AA purple
+        BlinkCmpKindUnit = { fg = theme.syn.number },         -- #6897BB blue
+        BlinkCmpKindValue = { fg = theme.syn.number },        -- #6897BB blue
+        BlinkCmpKindEnum = { fg = theme.syn.keyword },        -- #CC7832 orange
+        BlinkCmpKindKeyword = { fg = theme.syn.keyword },     -- #CC7832 orange
+        BlinkCmpKindSnippet = { fg = theme.syn.special1 },    -- #BBB529 yellow-green
+        BlinkCmpKindColor = { fg = theme.syn.special1 },      -- #BBB529 yellow-green
+        BlinkCmpKindFile = { fg = theme.syn.number },         -- #6897BB blue
+        BlinkCmpKindReference = { fg = theme.syn.number },    -- #6897BB blue
+        BlinkCmpKindFolder = { fg = theme.syn.number },       -- #6897BB blue
+        BlinkCmpKindEnumMember = { fg = theme.syn.constant }, -- #9876AA purple
+        BlinkCmpKindConstant = { fg = theme.syn.constant },   -- #9876AA purple
+        BlinkCmpKindStruct = { fg = theme.syn.keyword },      -- #CC7832 orange
+        BlinkCmpKindEvent = { fg = theme.syn.keyword },       -- #CC7832 orange
+        BlinkCmpKindOperator = { fg = theme.syn.keyword },    -- #CC7832 orange
+        BlinkCmpKindTypeParameter = { fg = theme.syn.number },-- #6897BB blue
+        BlinkCmpKindCopilot = { fg = theme.syn.string },      -- #6A8759 green
 
         -- IndentBlankline
         IndentBlanklineChar = { fg = theme.ui.whitespace },
